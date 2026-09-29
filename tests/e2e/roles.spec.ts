@@ -8,6 +8,7 @@ async function login(page, email: string, next = "/dashboard") {
   await page.getByLabel("Password").fill(PASSWORD);
   await page.getByRole("button", { name: "Sign in" }).click();
   await page.waitForURL(`**${next}`, { timeout: 15000 });
+  await page.waitForLoadState("networkidle", { timeout: 15000 });
 }
 
 test("anon is sent to login", async ({ page }) => {
