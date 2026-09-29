@@ -14,13 +14,9 @@ jobs:
         with:
           node-version: 22
           cache: npm
-          cache-dependency-path: opsdesk/package-lock.json
       - run: npm ci
-        working-directory: opsdesk
       - run: npm test
-        working-directory: opsdesk
       - run: npm run build
-        working-directory: opsdesk
         env:
           NEXT_TELEMETRY_DISABLED: 1
 
@@ -32,16 +28,11 @@ jobs:
         with:
           node-version: 22
           cache: npm
-          cache-dependency-path: opsdesk/package-lock.json
       - run: npm ci
-        working-directory: opsdesk
       - run: npx playwright install --with-deps chromium
-        working-directory: opsdesk
       - run: npm run build
-        working-directory: opsdesk
         env:
           NEXT_TELEMETRY_DISABLED: 1
       - run: (npm start &); sleep 12; npm run smoke; npm run e2e
-        working-directory: opsdesk
         env:
           NEXT_TELEMETRY_DISABLED: 1
