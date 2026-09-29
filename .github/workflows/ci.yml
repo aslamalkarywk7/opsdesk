@@ -36,3 +36,5 @@ jobs:
       - run: (npm start &); sleep 12; npm run smoke; npm run e2e
         env:
           NEXT_TELEMETRY_DISABLED: 1
+          AUTH_SECRET: ci-only-insecure-secret
+          DEMO_PASSWORD: opsdesk123
