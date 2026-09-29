@@ -21,17 +21,10 @@ export default function Login({ searchParams }: { searchParams?: { next?: string
     e.preventDefault();
     setBusy(true);
     setError("");
-    const res = await signIn("credentials", { email, password, redirect: false });
+    // Redirect flow: the browser follows the callback 302, so the session
+    // cookie and navigation land atomically (no fetch/navigation race).
+    await signIn("credentials", { email, password, redirectTo: next });
     setBusy(false);
-    if (!res) {
-      setError("Sign-in failed. Try again.");
-      return;
-    }
-    if (res.error) {
-      setError("Invalid email or password.");
-      return;
-    }
-    window.location.href = next;
   }
 
   return (
