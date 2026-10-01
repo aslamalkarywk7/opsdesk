@@ -1,3 +1,11 @@
+// OpsDesk auth config (Edge-safe).
+// Runs inside middleware.ts on the Vercel Edge runtime, so it must NOT import
+// Node-only modules (PrismaClient, bcryptjs, @auth/prisma-adapter).
+// - Demo Credentials provider only: email must match DEMO_USERS + DEMO_PASSWORD.
+// - JWT session carries `role`; session callback exposes `id` + `role` to pages.
+// - Full DB-backed login lives in auth.ts (Node runtime), which spreads this
+//   config and overrides `providers` with the Prisma + bcrypt authorize().
+// See: auth.ts (Node auth), middleware.ts (guards), docs/ROLES.md (RBAC matrix).
 import type { NextAuthConfig } from "next-auth";
 import type { DefaultSession } from "next-auth";
 import Credentials from "next-auth/providers/credentials";

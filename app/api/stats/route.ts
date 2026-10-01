@@ -1,3 +1,7 @@
+// GET /api/stats: validated KPI snapshot { todayAppointments, lowStock,
+// pendingOrders, revenueMonth }. Self-validates via StatsSchema (500 on break).
+// Demo-only store (no Prisma model for stats yet) - same numbers feed the
+// dashboard cards. See lib/data.ts + docs/API.md.
 import { NextResponse } from "next/server";
 import { stats } from "@/lib/data";
 import { StatsSchema } from "@/lib/schemas";

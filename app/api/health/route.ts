@@ -1,3 +1,6 @@
+// GET /api/health: liveness probe. Always 200 when the server runs.
+// Includes `db: true/false` (Neon reachable?) + `region`. No auth.
+// Verify after deploy: /api/health should show "status": "ok".
 import { NextResponse } from "next/server";
 import { count } from "@/lib/metrics";
 import { getDb } from "@/lib/db";

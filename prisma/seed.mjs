@@ -1,5 +1,6 @@
 // Seed production database: `npm run db:push` then `npm run db:seed`.
-// Requires DATABASE_URL. Safe to re-run (upserts by email).
+// Requires DATABASE_URL. Safe to re-run: users upsert by email, appointments
+// upsert by publicId, patients reused by name, seed audit row written once.
 import { PrismaClient } from "@prisma/client";
 import bcrypt from "bcryptjs";
 
@@ -35,9 +36,15 @@ async function main() {
   ];
 
   for (const [i, e] of entries.entries()) {
-    const patient = await db.patient.create({ data: { name: e.name, phone: `+20-100-000-000${i}` } });
-    await db.appointment.create({
-      data: {
+    // Patient has no unique field: reuse by name, else create once.
+    const patient =
+      (await db.patient.findFirst({ where: { name: e.name } })) ??
+      (await db.patient.create({ data: { name: e.name, phone: `+20-100-000-000${i}` } }));
+    // publicId is unique: second run updates instead of throwing P2002.
+    await db.appointment.upsert({
+      where: { publicId: e.publicId },
+      update: { patientId: patient.id, doctor: e.doctor, date: new Date(e.date), status: e.status },
+      create: {
         publicId: e.publicId,
         patientId: patient.id,
         doctor: e.doctor,
@@ -47,9 +54,13 @@ async function main() {
     });
   }
 
-  await db.auditLog.create({
-    data: { actorId: admin.id, action: "seed", entity: "database", entityId: "init" }
-  });
+  // Seed marker written once so re-runs stay clean.
+  const marker = await db.auditLog.findFirst({ where: { action: "seed", entity: "database", entityId: "init" } });
+  if (!marker) {
+    await db.auditLog.create({
+      data: { actorId: admin.id, action: "seed", entity: "database", entityId: "init" }
+    });
+  }
   console.log("Seed complete: 3 users (bcrypt), 6 patients, 6 appointments.");
 }
 

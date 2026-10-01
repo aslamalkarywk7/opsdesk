@@ -6,7 +6,10 @@ import { getDemoUsers } from "@/lib/demo-users";
 import { recentAudit } from "@/lib/audit";
 import { snapshot } from "@/lib/metrics";
 
-// ADMIN only (also enforced in middleware.ts).
+// ADMIN-only Team & audit page (also enforced in middleware.ts).
+// Guards: anonymous -> /login?next=/team, non-ADMIN -> /dashboard.
+// Sections: users & roles table (demo directory), request metrics snapshot,
+// full audit trail. See docs/ROLES.md.
 export default async function Team() {
   const session = await auth();
   if (!session?.user) redirect("/login?next=/team");

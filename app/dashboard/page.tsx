@@ -1,3 +1,9 @@
+// Role-aware dashboard (SSR). Requires login (middleware + redirect below).
+// - STAFF: "My tasks" check-in queue only (no KPI cards/approvals/stock).
+// - MANAGER/ADMIN: KPI cards + approvals + stock alerts; ADMIN also gets audit.
+// - Table: search (q) + pagination (4/page) via query params; actions post to
+//   /api/appointments/status (server-enforced RBAC). Renders the demo store;
+//   DB-backed rows appear only via the API list. See docs/ROLES.md.
 import Link from "next/link";
 import { redirect } from "next/navigation";
 import StatusBadge from "@/components/StatusBadge";

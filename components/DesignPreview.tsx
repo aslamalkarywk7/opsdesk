@@ -1,3 +1,5 @@
+// Miniature themed preview for one gallery design: nav + chart + density swatch
+// rendered in the design's own tokens (see lib/designs.ts). Gallery-only.
 import type { DashboardDesign } from "@/lib/designs";
 
 const BARS = [42, 68, 35, 80, 55, 90, 48, 72];

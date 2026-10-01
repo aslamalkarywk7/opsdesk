@@ -1,4 +1,7 @@
-/** @type {import('next').NextConfig} */
+/** OpsDesk Next.js config: strict mode, no X-Powered-By, global security headers
+ *  (nosniff, DENY framing, strict referrer). API no-store caching lives in
+ *  vercel.json. See docs/SECURITY.md.
+ *  @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
   poweredByHeader: false,

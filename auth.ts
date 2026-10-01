@@ -1,3 +1,9 @@
+// OpsDesk auth (Node runtime only - never import from middleware.ts).
+// Spreads auth.config.ts then upgrades it for production:
+// - Attaches PrismaAdapter when DATABASE_URL exists (Auth.js Account persistence).
+// - authorize() checks Postgres (bcrypt) first, falls back to demo users.
+// Pages + API routes use auth()/handlers from here; Edge middleware uses the
+// lightweight auth.config.ts instead. See docs/ROLES.md for the RBAC matrix.
 import NextAuth from "next-auth";
 import Credentials from "next-auth/providers/credentials";
 import { PrismaAdapter } from "@auth/prisma-adapter";

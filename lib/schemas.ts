@@ -1,3 +1,8 @@
+// Shared Zod contracts (single source of truth for validation).
+// AppointmentSchema: create/update payload. StatsSchema: /api/stats output.
+// StatusChangeSchema: { id, status } for /api/appointments/status.
+// TRANSITIONS: legal status graph; STAFF rule (scheduled->checked_in only) is
+// enforced in the status route + documented in docs/ROLES.md.
 import { z } from "zod";
 
 export const AppointmentStatus = z.enum(["scheduled", "checked_in", "completed", "cancelled"]);

@@ -2,16 +2,24 @@
 
 Vercel-native full-stack: Next.js 14 App Router + TypeScript strict + Tailwind + Auth.js v5 + Prisma + Zod + serverless API routes. Neon Postgres in production, demo memory store locally.
 
-Live: deploy this folder to Vercel (framework preset Next.js). No database required for demo; production Prisma schema in `prisma/schema.prisma` targets Neon Postgres.
+Live: import this repo in Vercel (Root Directory `./` empty, framework Next.js). No database required for demo; production Prisma schema in `prisma/schema.prisma` targets Neon Postgres. Full steps in [docs/DEPLOYMENT.md](docs/DEPLOYMENT.md) + [docs/DEPLOY-CHECKLIST.md](docs/DEPLOY-CHECKLIST.md).
 
 ## Quick start
 
 ```bash
-cd opsdesk
 npm install
+cp .env.example .env.local   # then set AUTH_SECRET (openssl rand -base64 32)
 npm run dev     # http://localhost:3000
-npm test        # node --test
-npm run build   # production check (same as Vercel)
+npm test        # node --test (7/7 offline domain checks)
+npm run build   # prisma generate && next build (same as Vercel)
+```
+
+Smoke/E2E need a running server + secrets (see [.github/workflows/ci.yml](.github/workflows/ci.yml)):
+
+```bash
+npm run build && npm start &   # wait ~12s
+AUTH_SECRET=... DEMO_PASSWORD=opsdesk123 npm run smoke
+npm run e2e                    # Playwright Chromium (needs npx playwright install)
 ```
 
 ## Routes
@@ -26,20 +34,27 @@ npm run build   # production check (same as Vercel)
 - `/api/stats` - Zod-validated KPIs
 - `/api/appointments?q=&page=&limit=` - list + `POST` create with validation
 - `/api/appointments/status` - transitions + RBAC
-- `/api/audit` - ADMIN trail - `/api/metrics` - counters - `/api/errors` - client beacon
+- `/api/audit` - ADMIN trail
+- `/api/metrics` - counters
+- `/api/errors` - client beacon
+
+Auth API (`/api/auth/*`: session, CSRF, sign-out, credentials callback) is documented in [docs/API.md](docs/API.md).
 
 ## Professional docs
 
-- `docs/ARCHITECTURE.md` - system design, data flow, Vercel mapping
-- `docs/ROLES.md` - role dashboards, RBAC matrix, enforcement, screenshots
-- `docs/DESIGNS.md` - 65-variant gallery, what it proves, CV bullet
-- `docs/DESIGN-SKILLS.md` - design & layout skills, Q&A on dashboard diversity
-- `docs/API.md` - endpoints, validation, errors
-- `docs/DATABASE.md` - ERD + indexes + Prisma rollout
-- `docs/SECURITY.md` - headers, RBAC plan, OWASP notes
-- `docs/CODE-STYLE.md` - senior conventions used here
-- `docs/DEPLOYMENT.md` - Vercel deploy steps + env vars
-- `public/screenshots/` - 10 UI captures + `designs/` (all 65 variants across 9 pages) for CV
+| Doc | Covers |
+|---|---|
+| [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) | system design, data flow, Vercel mapping |
+| [docs/ROLES.md](docs/ROLES.md) | role dashboards, RBAC matrix, enforcement, screenshots |
+| [docs/DESIGNS.md](docs/DESIGNS.md) | 65-variant gallery, what it proves, CV bullet |
+| [docs/DESIGN-SKILLS.md](docs/DESIGN-SKILLS.md) | design & layout skills, Q&A on dashboard diversity |
+| [docs/API.md](docs/API.md) | endpoints, validation, errors |
+| [docs/DATABASE.md](docs/DATABASE.md) | ERD + indexes + Prisma rollout |
+| [docs/SECURITY.md](docs/SECURITY.md) | headers, RBAC plan, OWASP notes |
+| [docs/CODE-STYLE.md](docs/CODE-STYLE.md) | senior conventions used here |
+| [docs/DEPLOYMENT.md](docs/DEPLOYMENT.md) | Vercel deploy steps + env vars |
+| [docs/DEPLOY-CHECKLIST.md](docs/DEPLOY-CHECKLIST.md) | 15-minute go-live checklist |
+| `public/screenshots/` | 10 UI captures + `designs/` (all 65 variants across 9 pages) for CV |
 
 ## Screenshots (in `public/screenshots/`)
 
@@ -59,17 +74,19 @@ npm run build   # production check (same as Vercel)
 
 - `npm test` - 7/7 passing (money format, appointment filter, pagination, 65-gallery count, module sync, ranks, transitions)
 - `npm run smoke` - 25 live-server checks: Auth.js login, RBAC matrix, pagination, validation contracts, gallery + live-design interactivity, metrics
-- `npm run e2e` - 5/5 real Chromium flows: guards, per-role dashboards, search, team RBAC
+- `npm run e2e` - 5/5 real Chromium flows: guards, per-role dashboards, search, team RBAC (transitions covered by unit + smoke)
 - `npm run build` - Next.js 14.2.35 production build, 80 static pages incl. 65 live designs + Auth.js middleware, First Load ~96 kB
-- API: `GET /api/stats` 200 with Zod contract, `POST /api/appointments` 422 on invalid body, `POST /api/appointments/status` enforces transitions + roles
+- API: `GET /api/stats` 200 with Zod contract, `POST /api/appointments` 400 on unparsable body / 422 on Zod failure, `POST /api/appointments/status` enforces transitions + roles
 - Auth: HMAC-signed cookie sessions, `/dashboard` guarded, `/team` + `/api/audit` ADMIN-only
-- Lighthouse (landing): Accessibility 98, Best Practices 100, SEO 100
+- Lighthouse on landing: Accessibility 98, Best Practices 100, SEO 100
 
-## Roles (demo accounts)
+## Roles (demo accounts, password `opsdesk123`)
 
 - `staff@opsdesk.demo` / STAFF - check-in queue + check-in only
 - `manager@opsdesk.demo` / MANAGER - approvals, stock alerts, complete/cancel
 - `admin@opsdesk.demo` / ADMIN - everything + `/team` users, audit trail, metrics
+
+Details + enforcement in [docs/ROLES.md](docs/ROLES.md).
 
 ## CV bullets (English)
 

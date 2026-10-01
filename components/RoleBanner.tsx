@@ -1,4 +1,5 @@
-import { redirect } from "next/navigation";
+// Signed-in identity banner: name + role pill + one-line scope description.
+// Pure display component (no auth logic); role colors/styles per Role.
 import type { Role } from "@/lib/auth-roles";
 
 const styles: Record<Role, string> = {

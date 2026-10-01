@@ -12,3 +12,4 @@
 
 Note: `npm run build` runs `prisma generate && next build`, and `middleware.ts`
 uses Edge-safe `auth.config.ts` (no Prisma/bcrypt) so Vercel Edge does not crash.
+Checklist: [docs/DEPLOY-CHECKLIST.md](DEPLOY-CHECKLIST.md). Data: [docs/DATABASE.md](DATABASE.md). Verify with [docs/API.md](API.md).

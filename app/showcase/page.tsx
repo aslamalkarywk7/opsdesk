@@ -1,3 +1,5 @@
+// Public 65-variant gallery (?domain= filter). Each card links to its live
+// themed workspace at /showcase/[id]. Static + SEO-friendly. See docs/DESIGNS.md.
 import Link from "next/link";
 import Topbar from "@/components/Topbar";
 import DesignPreview from "@/components/DesignPreview";

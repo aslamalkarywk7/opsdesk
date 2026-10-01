@@ -1,4 +1,7 @@
-// In-memory audit log. Production: persist via Prisma AuditLog model.
+// In-memory audit trail (demo fallback). audit() appends { at, actor, action,
+// entity, entityId } capped at 500 entries (oldest dropped). recentAudit()
+// returns newest-first. DB-backed trail lives in Prisma AuditLog (see
+// GET /api/audit + docs/DATABASE.md). Production: make Prisma the primary store.
 export interface AuditEntry {
   at: string;
   actor: string;

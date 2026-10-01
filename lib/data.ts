@@ -1,3 +1,8 @@
+// Demo in-memory store. Used when DATABASE_URL is missing (local dev + Vercel
+// demo). Shape differs from Prisma on purpose: flat Appointment rows + StockItem
+// inventory + static KPIs, none of which have Prisma models yet. DB-backed reads
+// live in the API routes (appointments list/status, audit); dashboard/team pages
+// always render this demo store. See prisma/schema.prisma + docs/DATABASE.md.
 import type { Appointment, Stats } from "./schemas";
 
 export const stats: Stats = {

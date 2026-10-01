@@ -1,3 +1,7 @@
+// E2E RBAC matrix (real Chromium, 5 flows): anon guard, STAFF queue-only,
+// MANAGER approvals+stock, ADMIN team access, STAFF team denial. Transitions
+// are covered by unit (domain.test.mjs) + smoke, not here. Requires a running
+// server: build + start first (see playwright.config.ts + ci.yml).
 import { test, expect } from "@playwright/test";
 
 const PASSWORD = process.env.DEMO_PASSWORD ?? "opsdesk123";

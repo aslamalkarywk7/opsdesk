@@ -1,3 +1,4 @@
+// 404 page: unknown routes + unknown /showcase/[id] designs land here.
 export default function NotFound() {
   return (
     <main className="mx-auto flex min-h-screen max-w-md flex-col items-center justify-center px-4 text-center">

@@ -1,4 +1,7 @@
-// In-memory request metrics. Production: export to Vercel Analytics / Sentry.
+// In-memory request metrics (per serverless instance - resets on cold start).
+// count() increments a route key; snapshot() returns { uptimeSeconds, requests }.
+// Surfaced at GET /api/metrics + /team. Production: export to Vercel Analytics.
+// See lib/audit.ts (trail) + docs/ARCHITECTURE.md.
 const counters = new Map<string, number>();
 const startedAt = Date.now();
 

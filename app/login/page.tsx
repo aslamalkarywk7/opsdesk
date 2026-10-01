@@ -1,3 +1,7 @@
+// Sign-in page (client component). Credential form + one-click demo accounts
+// (password opsdesk123). Uses the redirect flow so the session cookie and
+// navigation land atomically. `?next=` is the post-login target (default
+// /dashboard). Server-side role routing happens in middleware + pages.
 "use client";
 
 import { useState } from "react";

@@ -1,3 +1,5 @@
+// Status pill: colored label for scheduled/checked_in/completed/cancelled.
+// Color is decoration only - the text label carries meaning (a11y).
 const tones: Record<string, string> = {
   scheduled: "bg-brand-50 text-brand-700 border-brand-100",
   checked_in: "bg-amber-50 text-amber-700 border-amber-200",

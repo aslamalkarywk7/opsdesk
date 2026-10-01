@@ -1,6 +1,7 @@
 # Design & Layout Skills
 
 Proven by the live gallery `/showcase` (65 variants) and the role dashboards. Screenshots: `public/screenshots/designs/`.
+Gallery system: [docs/DESIGNS.md](DESIGNS.md). Tokens: `lib/designs.ts`.
 
 ## Skills demonstrated
 
@@ -41,6 +42,6 @@ A: Sidebar to topbar, 3-column stats to 1 column, table to horizontally scrollin
 
 ## Gallery map
 
-- `designs/all.png` - all 65 variants, full gallery
+- `designs/all.png` - all 65 variants, full gallery (under `public/screenshots/designs/`)
 - `designs/<domain>.png` - the 8 variants of each domain: healthcare, finance, ecommerce, education, logistics, hr-people, real-estate, saas-analytics
 - `showcase-live.png` - one live interactive workspace with search, filter chips, sorting, pagination

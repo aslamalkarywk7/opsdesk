@@ -1,6 +1,7 @@
 # Dashboard Design Gallery (65 variants)
 
 Public page `/showcase`: 8 domains x 8 layout systems + 1 signature = 65 live previews.
+Companion: [docs/DESIGN-SKILLS.md](DESIGN-SKILLS.md) (skills + Q&A). Tokens: `lib/designs.ts`. Captures: `public/screenshots/designs/`.
 Every card opens a full themed workspace at `/showcase/[id]` (sidebar, stats, chart, table in that design's tokens). Each workspace is interactive: live search, status filter chips with counts, sortable columns, pagination. Unknown ids return 404.
 
 ## What it proves to hiring managers

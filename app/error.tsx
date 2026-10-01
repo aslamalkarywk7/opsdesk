@@ -1,3 +1,5 @@
+// App error boundary (client). Reports the crash to POST /api/errors (beacon,
+// never throws) and offers a retry button. See lib/errors.ts.
 "use client";
 
 import { useEffect } from "react";

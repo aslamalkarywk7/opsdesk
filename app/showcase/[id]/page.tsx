@@ -1,3 +1,7 @@
+// Live themed workspace for one gallery design (65 static paths via
+// generateStaticParams). Interactive demo: search (q), status chips, sortable
+// columns, pagination over the demo store. Unknown id -> 404 (notFound()).
+// See docs/DESIGNS.md for the 8x8+1 system.
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { DESIGNS } from "@/lib/designs";

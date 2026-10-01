@@ -1,3 +1,5 @@
+// Landing page (public, static). Feature grid + 65-design banner + stack +
+// role preview. Entry point for hiring managers; CTAs go to /showcase, /login.
 import Link from "next/link";
 
 const features = [

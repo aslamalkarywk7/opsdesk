@@ -1,3 +1,4 @@
+// KPI card: label + big value + small hint. Used for the 4 dashboard stats.
 export default function StatCard({
   label,
   value,

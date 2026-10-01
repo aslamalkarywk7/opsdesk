@@ -1,3 +1,11 @@
+// OpsDesk Edge middleware: session gate + demo rate limit + request tracing.
+// - /dashboard/:path* : any signed-in role, else redirect to /login?next=...
+// - /team/:path* + /api/audit* : ADMIN only (pages redirect, APIs get 403 JSON).
+// - POST /api/* : per-instance memory rate limit (20 req/min/IP); production
+//   needs Upstash Redis because serverless instances do not share this Map.
+// - Adds x-request-id to every matched response for log correlation.
+// Matcher must list every guarded/rate-limited route explicitly. Uses the
+// Edge-safe auth.config.ts (auth.ts would crash Edge via Prisma/bcrypt).
 import NextAuth from "next-auth";
 import { NextResponse } from "next/server";
 import { authConfig } from "./auth.config";
@@ -37,7 +45,7 @@ export default auth((req) => {
     }
   }
 
-  if (pathname.startsWith("/team") || pathname === "/api/audit") {
+  if (pathname.startsWith("/team") || pathname.startsWith("/api/audit")) {
     if (!req.auth?.user) {
       const url = req.nextUrl.clone();
       url.pathname = "/login";
@@ -58,5 +66,5 @@ export default auth((req) => {
 });
 
 export const config = {
-  matcher: ["/dashboard/:path*", "/team/:path*", "/api/appointments", "/api/audit"]
+  matcher: ["/dashboard/:path*", "/team/:path*", "/api/appointments", "/api/appointments/status", "/api/audit"]
 };

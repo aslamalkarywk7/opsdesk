@@ -1,3 +1,11 @@
+// GET: list/search/paginate appointments (DB when DATABASE_URL set, else demo).
+// Query: q (patient/doctor/id substring), page, limit (see lib/paginate.ts).
+// Responds { data, total, page, limit, totalPages, source: "db" | "demo" }.
+// POST: validate-only create (JSON or HTML form). 400 = unparsable body,
+// 422 = Zod validation failed, 201 = valid (demo: NOT persisted by design -
+// the dashboard/API list always re-reads the store; DB persist is a TODO).
+// Note: create is intentionally open (no auth) for the public demo; mutations
+// that change state (/status) require auth. See docs/API.md.
 import { NextResponse } from "next/server";
 import { appointments } from "@/lib/data";
 import { AppointmentSchema } from "@/lib/schemas";
@@ -34,7 +42,9 @@ export async function GET(request: Request) {
   const page = Number(searchParams.get("page") ?? "1");
   const limit = Number(searchParams.get("limit") ?? "10");
 
-  const source = (await listFromDb()) ?? appointments;
+  // Single DB read: rows feed both the list and the source flag (avoids 2x query).
+  const dbRows = await listFromDb();
+  const source = dbRows ?? appointments;
   const filtered = q
     ? source.filter(
         (a) =>
@@ -44,7 +54,7 @@ export async function GET(request: Request) {
       )
     : source;
   const result = paginate(filtered, page, limit);
-  return NextResponse.json({ data: result.rows, ...result, source: (await listFromDb()) ? "db" : "demo" }, { status: 200 });
+  return NextResponse.json({ data: result.rows, ...result, source: dbRows ? "db" : "demo" }, { status: 200 });
 }
 
 export async function POST(request: Request) {
@@ -75,7 +85,8 @@ export async function POST(request: Request) {
       { status: 422 }
     );
   }
-  const actor = request.headers.get("cookie")?.includes("opsdesk_session") ? "session-user" : "anonymous";
+  // Auth.js v5 session cookie is `authjs.session-token` (secure variant in prod).
+  const actor = request.headers.get("cookie")?.includes("authjs.session-token") ? "session-user" : "anonymous";
   audit({ actor, action: "create", entity: "appointment", entityId: parsed.data.id });
   return NextResponse.json({ data: parsed.data, message: "Created" }, { status: 201 });
 }

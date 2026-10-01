@@ -1,4 +1,6 @@
-/** @type {import('tailwindcss').Config} */
+/** OpsDesk Tailwind theme: brand/ink tokens + card shadow used by gallery
+ *  designs and app pages (see lib/designs.ts + app/globals.css).
+ *  @type {import('tailwindcss').Config} */
 module.exports = {
   content: ["./app/**/*.{ts,tsx}", "./components/**/*.{ts,tsx}"],
   theme: {

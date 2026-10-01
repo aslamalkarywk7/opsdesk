@@ -1,3 +1,5 @@
+/* Global styles: Tailwind base + shared utilities (.card, .btn-primary,
+   .btn-ghost, .input, .label, .table/.data) used across dashboard/team. */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;

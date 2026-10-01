@@ -1,3 +1,5 @@
+// Root layout: HTML shell + global CSS + shared metadata (title/description).
+// All routes render inside {children}. See app/globals.css for .card/.btn.
 import type { Metadata } from "next";
 import "./globals.css";
 

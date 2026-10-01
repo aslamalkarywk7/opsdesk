@@ -1,3 +1,5 @@
+// Site header: logo + nav (Dashboard, Appointments anchor, Designs gallery,
+// raw JSON probes API stats/health) + Sign in. Shown on public + app pages.
 import Link from "next/link";
 
 const links = [
