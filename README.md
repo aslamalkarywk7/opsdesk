@@ -54,6 +54,7 @@ Auth API (`/api/auth/*`: session, CSRF, sign-out, credentials callback) is docum
 | [docs/CODE-STYLE.md](docs/CODE-STYLE.md) | senior conventions used here |
 | [docs/DEPLOYMENT.md](docs/DEPLOYMENT.md) | Vercel deploy steps + env vars |
 | [docs/DEPLOY-CHECKLIST.md](docs/DEPLOY-CHECKLIST.md) | 15-minute go-live checklist |
+| [docs/FILES.md](docs/FILES.md) | one doc per code file (46) - what each file does |
 | `public/screenshots/` | 10 UI captures + `designs/` (all 65 variants across 9 pages) for CV |
 
 ## Screenshots (in `public/screenshots/`)

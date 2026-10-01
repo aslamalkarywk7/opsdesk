@@ -1,7 +1,7 @@
 # Architecture
 
 Single Vercel project (serverless). No separate backend server to operate.
-APIs: [docs/API.md](API.md). Data: [docs/DATABASE.md](DATABASE.md). Auth/RBAC: [docs/ROLES.md](ROLES.md). Deploy: [docs/DEPLOYMENT.md](DEPLOYMENT.md).
+APIs: [docs/API.md](API.md). Data: [docs/DATABASE.md](DATABASE.md). Auth/RBAC: [docs/ROLES.md](ROLES.md). Deploy: [docs/DEPLOYMENT.md](DEPLOYMENT.md). Every file: [docs/FILES.md](FILES.md).
 
 ```
 Browser -> Vercel Edge (headers) -> Next.js App Router
