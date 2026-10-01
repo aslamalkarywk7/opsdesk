@@ -15,14 +15,14 @@
 
 ## 2. GitHub + green CI (5 min)
 
-1. Push `opsdesk/` to a new repo (root = `opsdesk/` or set Root Directory in Vercel).
+1. Push this repo (root = project root, `package.json` in `/`).
 2. The workflow `.github/workflows/ci.yml` runs `npm ci` + `npm test` + `npm run build` on every push.
 3. Check Actions tab - green check required before deploy.
 
 ## 3. Vercel live URL (5 min)
 
-1. Vercel > Add New Project > import the repo, Root Directory `opsdesk`.
-2. Environment Variables: `DATABASE_URL`, `AUTH_SECRET` (`openssl rand -base64 32`), `NEXTAUTH_URL` (your vercel.app URL), `DEMO_PASSWORD`.
+1. Vercel > Add New Project > import the repo, Root Directory `./` (empty, NOT `opsdesk`).
+2. Environment Variables: `DATABASE_URL`, `AUTH_SECRET` + `NEXTAUTH_SECRET` (same value, `openssl rand -base64 32`), `NEXTAUTH_URL` (your `https://xxx.vercel.app` URL), `DEMO_PASSWORD`.
 3. Deploy. Verify: `/api/health` (`db: true`), `/login` per role, `/team` as admin.
 4. Copy the live URL into `README.md` and your CV.
 

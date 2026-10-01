@@ -5,7 +5,8 @@
   "description": "OpsDesk - Business Management SaaS (Vercel-native, Next.js + TypeScript + Prisma)",
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "prisma generate && next build",
+    "postinstall": "prisma generate",
     "start": "next start",
     "lint": "next lint",
     "test": "node --test tests/domain.test.mjs",

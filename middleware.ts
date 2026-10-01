@@ -1,5 +1,8 @@
+import NextAuth from "next-auth";
 import { NextResponse } from "next/server";
-import { auth } from "./auth";
+import { authConfig } from "./auth.config";
+
+const { auth } = NextAuth(authConfig);
 
 // Demo rate limiter (per-instance memory). Production: Upstash Redis.
 const hits = new Map<string, number[]>();
