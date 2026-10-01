@@ -2,7 +2,7 @@
 
 Vercel-native full-stack: Next.js 14 App Router + TypeScript strict + Tailwind + Auth.js v5 + Prisma + Zod + serverless API routes. Neon Postgres in production, demo memory store locally.
 
-Live: import this repo in Vercel (Root Directory `./` empty, framework Next.js). No database required for demo; production Prisma schema in `prisma/schema.prisma` targets Neon Postgres. Full steps in [docs/DEPLOYMENT.md](docs/DEPLOYMENT.md) + [docs/DEPLOY-CHECKLIST.md](docs/DEPLOY-CHECKLIST.md).
+Live: https://opsdesk-vjez.vercel.app/ — import this repo in Vercel (Root Directory `./` empty, framework Next.js). No database required for demo; production Prisma schema in `prisma/schema.prisma` targets Neon Postgres. Full steps in [docs/DEPLOYMENT.md](docs/DEPLOYMENT.md) + [docs/DEPLOY-CHECKLIST.md](docs/DEPLOY-CHECKLIST.md).
 
 ## Quick start
 

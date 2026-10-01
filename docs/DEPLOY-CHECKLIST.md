@@ -25,7 +25,7 @@ Deploy steps: [docs/DEPLOYMENT.md](DEPLOYMENT.md). Data: [docs/DATABASE.md](DATA
 1. Vercel > Add New Project > import the repo, Root Directory `./` (empty, NOT `opsdesk`).
 2. Environment Variables: `DATABASE_URL`, `AUTH_SECRET` + `NEXTAUTH_SECRET` (same value, `openssl rand -base64 32`), `NEXTAUTH_URL` (your `https://xxx.vercel.app` URL), `DEMO_PASSWORD`.
 3. Deploy. Verify: `/api/health` (`db: true`), `/login` per role, `/team` as admin.
-4. Copy the live URL into `README.md` and your CV.
+4. Live URL: `https://opsdesk-vjez.vercel.app/` (already in `README.md` + GitHub homepage).
 
 ## 4. Evidence for hiring managers
 
