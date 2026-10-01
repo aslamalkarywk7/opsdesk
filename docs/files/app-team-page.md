@@ -1,11 +1,11 @@
 ﻿# `app/team/page.tsx`
 
-> ADMIN-only Team and audit page: users, metrics, full trail.
+> ADMIN-only Team and audit page: users, metrics, full trail (DB or demo).
 
 ## What it does
 
 - Guards: anonymous to `/login?next=/team`, non-ADMIN to `/dashboard` (mirrors middleware).
-- Sections: users and roles table (demo directory), request metrics, audit trail (50).
+- Sections: users and roles table (Postgres users or demo directory), request metrics (per-instance memory), audit trail (Postgres or memory, 50) - each with a Live database / Demo data badge.
 
 ## Screenshot
 

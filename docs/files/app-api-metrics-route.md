@@ -1,6 +1,6 @@
 ﻿# `app/api/metrics/route.ts`
 
-> Uptime + per-route request counters.
+> Uptime + per-route request counters (`persistence: memory` - resets on cold start).
 
 ## What it does
 

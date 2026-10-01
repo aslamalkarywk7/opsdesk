@@ -1,11 +1,11 @@
 ﻿# `app/api/appointments/route.ts`
 
-> List/search/paginate appointments; validate-only create.
+> List/search/paginate appointments; persistent create.
 
 ## What it does
 
-- GET `?q=&page=&limit=`: DB rows when `DATABASE_URL` set, else demo store. Responds `{ data, total, page, limit, totalPages, source }`.
-- POST (JSON or form, demo-open): 400 unparsable body, 422 Zod failure, 201 valid. Valid creates are NOT persisted (documented demo gap).
+- GET `?q=&page=&limit=`: rows from `listAppointments()` (DB or demo). Responds `{ data, total, page, limit, totalPages, source }`.
+- POST (JSON or form): 400 unparsable body, 422 Zod failure, 409 duplicate id, 201 created + stored (Postgres or demo memory) + audited.
 
 ## Key behavior
 
@@ -15,6 +15,7 @@
 ## Links
 
 - Source: `../../app/api/appointments/route.ts`
+- Store: [lib-appointments.md](lib-appointments.md)
 - Schemas: [lib-schemas.md](lib-schemas.md)
 - Store: [lib-data.md](lib-data.md)
 - Guide: [API](../API.md)

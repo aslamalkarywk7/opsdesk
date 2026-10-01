@@ -12,7 +12,10 @@ import { getDb } from "./lib/db";
 import type { Role } from "./lib/auth-roles";
 import { authConfig, DEMO_USERS } from "./auth.config";
 
-const DEMO_PASSWORD = process.env.DEMO_PASSWORD ?? "opsdesk123";
+// Same production rule as auth.config.ts: no hardcoded password fallback in
+// production. Demo login requires explicit DEMO_PASSWORD; otherwise only
+// Postgres (bcrypt) users can sign in.
+const DEMO_PASSWORD = process.env.DEMO_PASSWORD ?? (process.env.NODE_ENV === "production" ? "" : "opsdesk123");
 
 const db = getDb();
 
@@ -38,6 +41,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
           return { id: user.id, email: user.email, name: user.name, role: user.role as Role };
         }
 
+        if (!DEMO_PASSWORD) return null;
         if (parsed.data.password !== DEMO_PASSWORD) return null;
         const demo = DEMO_USERS.find((u) => u.email === email);
         return demo ?? null;

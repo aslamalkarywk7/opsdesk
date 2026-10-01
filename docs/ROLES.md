@@ -10,7 +10,7 @@ Three demo accounts, three different dashboards. Every screenshot below is captu
 | Stats cards, approvals, stock | no | yes | yes |
 | /team, /api/audit, metrics | no (redirect/403) | no (redirect/403) | yes |
 
-Demo password for all three: `opsdesk123` (override via `DEMO_PASSWORD`).
+Demo password for all three: `opsdesk123` (override via `DEMO_PASSWORD`). Production has no default: set `DEMO_PASSWORD` explicitly or demo login is disabled and only Postgres users can sign in.
 
 ## Screenshots
 

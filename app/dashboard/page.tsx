@@ -2,8 +2,10 @@
 // - STAFF: "My tasks" check-in queue only (no KPI cards/approvals/stock).
 // - MANAGER/ADMIN: KPI cards + approvals + stock alerts; ADMIN also gets audit.
 // - Table: search (q) + pagination (4/page) via query params; actions post to
-//   /api/appointments/status (server-enforced RBAC). Renders the demo store;
-//   DB-backed rows appear only via the API list. See docs/ROLES.md.
+//   /api/appointments/status (server-enforced RBAC). Rows come from
+//   listAppointments() (Postgres when DATABASE_URL set, else demo store), so the
+//   page shows the same data the API returns. KPIs + inventory are still demo
+//   constants (no Prisma models yet). See docs/ROLES.md + docs/DATABASE.md.
 import Link from "next/link";
 import { redirect } from "next/navigation";
 import StatusBadge from "@/components/StatusBadge";
@@ -11,7 +13,8 @@ import StatCard from "@/components/StatCard";
 import Topbar from "@/components/Topbar";
 import RoleBanner from "@/components/RoleBanner";
 import { auth } from "@/auth";
-import { appointments, lowStockItems, stats } from "@/lib/data";
+import { lowStockItems, stats } from "@/lib/data";
+import { listAppointments } from "@/lib/appointments";
 import { formatMoney } from "@/lib/format";
 import { paginate } from "@/lib/paginate";
 import { recentAudit } from "@/lib/audit";
@@ -60,20 +63,22 @@ export default async function Dashboard({
 
   const q = searchParams?.q ?? "";
   const needle = q.trim().toLowerCase();
+  // DB-backed list (same source the API reads); badge below shows db vs demo.
+  const { rows: allAppointments, source } = await listAppointments();
   const filtered = needle
-    ? appointments.filter(
+    ? allAppointments.filter(
         (a) =>
           a.patient.toLowerCase().includes(needle) ||
           a.doctor.toLowerCase().includes(needle) ||
           a.id.toLowerCase().includes(needle)
       )
-    : appointments;
+    : allAppointments;
   const { rows, total, page, totalPages } = paginate(filtered, Number(searchParams?.page ?? "1"), 4);
 
   const isStaff = user.role === "STAFF";
   const isAdmin = user.role === "ADMIN";
-  const tasks = appointments.filter((a) => a.status === "scheduled" || a.status === "checked_in").slice(0, 4);
-  const approvals = isStaff ? [] : appointments.filter((a) => a.status === "scheduled");
+  const tasks = allAppointments.filter((a) => a.status === "scheduled" || a.status === "checked_in").slice(0, 4);
+  const approvals = isStaff ? [] : allAppointments.filter((a) => a.status === "scheduled");
   const stock = isStaff ? [] : lowStockItems().slice(0, 5);
   const trail = isAdmin ? recentAudit(5) : [];
 
@@ -136,7 +141,12 @@ export default async function Dashboard({
           <div className="table-wrap lg:col-span-2">
             <div className="flex items-center justify-between border-b border-slate-200 px-4 py-3">
               <h2 className="text-sm font-bold">Appointments</h2>
-              <span className="text-xs text-slate-500">{total} total - page {page}/{totalPages}</span>
+              <span className="flex items-center gap-2 text-xs text-slate-500">
+                {total} total - page {page}/{totalPages}
+                <span className={`rounded-full border px-2 py-0.5 font-bold ${source === "db" ? "border-emerald-200 bg-emerald-50 text-emerald-700" : "border-amber-200 bg-amber-50 text-amber-700"}`}>
+                  {source === "db" ? "Live database" : "Demo data"}
+                </span>
+              </span>
             </div>
             <table className="data">
               <thead>

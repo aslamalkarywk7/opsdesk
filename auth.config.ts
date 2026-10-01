@@ -27,7 +27,11 @@ declare module "@auth/core/jwt" {
   }
 }
 
-const DEMO_PASSWORD = process.env.DEMO_PASSWORD ?? "opsdesk123";
+// Demo password: explicit DEMO_PASSWORD wins. The hardcoded "opsdesk123" exists
+// for local dev only (NODE_ENV != production). In production without
+// DEMO_PASSWORD, demo login is disabled (authorize returns null) and only
+// Postgres users (bcrypt) can sign in - never fall back to a public password.
+const DEMO_PASSWORD = process.env.DEMO_PASSWORD ?? (process.env.NODE_ENV === "production" ? "" : "opsdesk123");
 
 export const DEMO_USERS: Array<{ id: string; email: string; name: string; role: Role }> = [
   { id: "u-admin", email: "admin@opsdesk.demo", name: "Admin", role: "ADMIN" },
@@ -49,6 +53,7 @@ export const authConfig: NextAuthConfig = {
           .safeParse(raw);
         if (!parsed.success) return null;
         const email = parsed.data.email.toLowerCase().trim();
+        if (!DEMO_PASSWORD) return null;
         if (parsed.data.password !== DEMO_PASSWORD) return null;
         const demo = DEMO_USERS.find((u) => u.email === email);
         return demo ?? null;

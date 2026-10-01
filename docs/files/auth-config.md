@@ -11,7 +11,7 @@
 ## Key behavior
 
 - Safe to bundle on Vercel Edge (`middleware.ts` builds on it).
-- `authorize()` accepts only `DEMO_USERS` + `DEMO_PASSWORD`.
+- `authorize()` accepts only `DEMO_USERS` + explicit `DEMO_PASSWORD` (dev-only fallback `opsdesk123`; production without it disables demo login).
 
 ## Links
 

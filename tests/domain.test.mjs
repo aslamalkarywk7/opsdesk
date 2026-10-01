@@ -73,7 +73,7 @@ describe("OpsDesk domain", () => {
     const schemas = fs.readFileSync(path.join(root, "lib", "schemas.ts"), "utf8");
     assert.match(schemas, /AppointmentSchema/);
     assert.match(schemas, /StatsSchema/);
-    for (const f of ["app/api/health/route.ts", "app/api/stats/route.ts", "app/api/appointments/route.ts", "app/dashboard/page.tsx", "middleware.ts", "auth.ts", "lib/auth-roles.ts", "lib/demo-users.ts", "lib/db.ts", "lib/paginate.ts", "lib/audit.ts", "lib/metrics.ts", "lib/errors.ts", "app/login/page.tsx", "app/error.tsx", "app/not-found.tsx", "app/api/auth/[...nextauth]/route.ts", "app/api/metrics/route.ts", "app/api/errors/route.ts", "prisma/seed.mjs", ".github/workflows/ci.yml", "tests/smoke.mjs", "playwright.config.ts", "tests/e2e/roles.spec.ts", "app/api/appointments/status/route.ts", "app/api/audit/route.ts", "app/team/page.tsx", "components/RoleBanner.tsx"]) {
+    for (const f of ["app/api/health/route.ts", "app/api/stats/route.ts", "app/api/appointments/route.ts", "app/dashboard/page.tsx", "middleware.ts", "auth.ts", "lib/auth-roles.ts", "lib/demo-users.ts", "lib/db.ts", "lib/paginate.ts", "lib/audit.ts", "lib/metrics.ts", "lib/errors.ts", "lib/appointments.ts", "app/login/page.tsx", "app/error.tsx", "app/not-found.tsx", "app/api/auth/[...nextauth]/route.ts", "app/api/metrics/route.ts", "app/api/errors/route.ts", "prisma/seed.mjs", "LICENSE", ".github/workflows/ci.yml", "tests/smoke.mjs", "playwright.config.ts", "tests/e2e/roles.spec.ts", "app/api/appointments/status/route.ts", "app/api/audit/route.ts", "app/team/page.tsx", "components/RoleBanner.tsx"]) {
       assert.ok(fs.existsSync(path.join(root, f)), f);
     }
   });

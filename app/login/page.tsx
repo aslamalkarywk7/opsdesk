@@ -17,7 +17,9 @@ const ACCOUNTS = [
 export default function Login({ searchParams }: { searchParams?: { next?: string; error?: string } }) {
   const next = searchParams?.next ?? "/dashboard";
   const [email, setEmail] = useState("admin@opsdesk.demo");
-  const [password, setPassword] = useState("opsdesk123");
+  // Never prefill the password (it would ship in the client bundle).
+  // Clicking a demo account fills the email; type the demo password yourself.
+  const [password, setPassword] = useState("");
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState(searchParams?.error === "CredentialsSignin" ? "Invalid email or password." : "");
 
@@ -44,7 +46,7 @@ export default function Login({ searchParams }: { searchParams?: { next?: string
           </div>
           <div>
             <label className="label" htmlFor="password">Password</label>
-            <input id="password" name="password" type="password" className="input" value={password} onChange={(e) => setPassword(e.target.value)} required />
+            <input id="password" name="password" type="password" className="input" placeholder="Demo: opsdesk123" value={password} onChange={(e) => setPassword(e.target.value)} required />
           </div>
           {error && <p className="rounded-xl bg-red-50 px-3 py-2 text-sm font-semibold text-red-600">{error}</p>}
           <button className="btn-primary w-full" type="submit" disabled={busy}>

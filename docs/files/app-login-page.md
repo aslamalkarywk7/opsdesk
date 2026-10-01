@@ -6,6 +6,7 @@
 
 - Email/password form using Auth.js `signIn("credentials")` redirect flow.
 - Demo picker fills `staff/manager/admin@opsdesk.demo` (password `opsdesk123`).
+- Password field is never prefilled (would ship in the client bundle).
 - `?next=` sets the post-login target (default `/dashboard`).
 
 ## Screenshot

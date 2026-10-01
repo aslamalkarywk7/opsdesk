@@ -33,4 +33,4 @@ Deploy steps: [docs/DEPLOYMENT.md](DEPLOYMENT.md). Data: [docs/DATABASE.md](DATA
 - `npm run smoke` - 25 live-server checks (RBAC, contracts, gallery, metrics)
 - `npm run e2e` - 5/5 real Chromium flows (guards, per-role dashboards, search, team RBAC)
 - `public/screenshots/` - 10 UI captures + `designs/` (all 65 variants across 9 pages)
-- Lighthouse on landing: Accessibility 98, Best Practices 100, SEO 100
+- Lighthouse (landing, desktop, measured Oct 2026): Accessibility 98, Best Practices 100, SEO 100 (re-run per deploy with `npx lighthouse <url> --view`)

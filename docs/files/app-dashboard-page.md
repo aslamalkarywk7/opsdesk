@@ -11,7 +11,7 @@
 
 ## Key behavior
 
-- Renders the demo store; DB rows appear only via the API list.
+- Rows from `listAppointments()` (Postgres or demo) with a Live database / Demo data badge; KPIs + inventory stay demo constants.
 
 ## Screenshot
 

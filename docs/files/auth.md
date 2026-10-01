@@ -10,8 +10,8 @@
 
 ## Key behavior
 
-- `secret`: `AUTH_SECRET` or `NEXTAUTH_SECRET`.
-- Demo password default `opsdesk123` (override with `DEMO_PASSWORD`).
+- `secret`: `AUTH_SECRET` or `NEXTAUTH_SECRET` (missing secret fails closed in production).
+- Demo password: explicit `DEMO_PASSWORD` only; dev-only fallback `opsdesk123`. Production without `DEMO_PASSWORD` disables demo login (Postgres users only).
 - Never import from `middleware.ts` (Edge crash) - Edge uses `auth.config.ts`.
 
 ## Links

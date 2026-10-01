@@ -2,6 +2,7 @@
   "name": "opsdesk",
   "version": "1.0.0",
   "private": true,
+  "license": "MIT",
   "description": "OpsDesk - Business Management SaaS (Vercel-native, Next.js + TypeScript + Prisma)",
   "scripts": {
     "dev": "next dev",

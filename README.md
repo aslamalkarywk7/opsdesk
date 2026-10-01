@@ -1,5 +1,7 @@
 # OpsDesk - Business Management SaaS
 
+[![CI](https://github.com/aslamalkarywk7/opsdesk/actions/workflows/ci.yml/badge.svg)](https://github.com/aslamalkarywk7/opsdesk/actions/workflows/ci.yml)
+
 Vercel-native full-stack: Next.js 14 App Router + TypeScript strict + Tailwind + Auth.js v5 + Prisma + Zod + serverless API routes. Neon Postgres in production, demo memory store locally.
 
 Live: https://opsdesk-vjez.vercel.app/ — import this repo in Vercel (Root Directory `./` empty, framework Next.js). No database required for demo; production Prisma schema in `prisma/schema.prisma` targets Neon Postgres. Full steps in [docs/DEPLOYMENT.md](docs/DEPLOYMENT.md) + [docs/DEPLOY-CHECKLIST.md](docs/DEPLOY-CHECKLIST.md).
@@ -59,7 +61,7 @@ Auth API (`/api/auth/*`: session, CSRF, sign-out, credentials callback) is docum
 | [docs/CODE-STYLE.md](docs/CODE-STYLE.md) | senior conventions used here |
 | [docs/DEPLOYMENT.md](docs/DEPLOYMENT.md) | Vercel deploy steps + env vars |
 | [docs/DEPLOY-CHECKLIST.md](docs/DEPLOY-CHECKLIST.md) | 15-minute go-live checklist |
-| [docs/FILES.md](docs/FILES.md) | one doc per code file (46) - what each file does |
+| [docs/FILES.md](docs/FILES.md) | one doc per code file (47) - what each file does |
 | `public/screenshots/` | 10 UI captures + `designs/` (all 65 variants across 9 pages) for CV |
 
 ## Screenshots (in `public/screenshots/`)
@@ -116,7 +118,7 @@ All 65 variants + one page per domain (8 files) in `designs/`:
 - `npm run build` - Next.js 14.2.35 production build, 80 static pages incl. 65 live designs + Auth.js middleware, First Load ~96 kB
 - API: `GET /api/stats` 200 with Zod contract, `POST /api/appointments` 400 on unparsable body / 422 on Zod failure, `POST /api/appointments/status` enforces transitions + roles
 - Auth: HMAC-signed cookie sessions, `/dashboard` guarded, `/team` + `/api/audit` ADMIN-only
-- Lighthouse on landing: Accessibility 98, Best Practices 100, SEO 100
+- Lighthouse (landing, desktop, measured Oct 2026): Accessibility 98, Best Practices 100, SEO 100. Performance varies per deploy - re-run with `npx lighthouse https://opsdesk-vjez.vercel.app/ --view`.
 
 ## Roles (demo accounts, password `opsdesk123`)
 
@@ -131,3 +133,7 @@ Details + enforcement in [docs/ROLES.md](docs/ROLES.md).
 - Built responsive SaaS dashboard (Next.js, TypeScript, Tailwind) with serverless APIs, Zod validation, search and paginated tables.
 - Designed production Prisma/Postgres schema with RBAC, audit log and indexes; documented rollout to Neon.
 - Hardened for Vercel: security headers, no-store APIs, validated inputs, clean error contracts.
+
+## License
+
+MIT - see [LICENSE](LICENSE). Copyright 2026 Islam El-Nashar.

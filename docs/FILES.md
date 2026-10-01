@@ -1,4 +1,4 @@
-﻿# Code files (46) - one doc per file
+﻿# Code files (47) - one doc per file
 
 Every source file has a short doc explaining its job in the project.
 Main guides: [ARCHITECTURE](ARCHITECTURE.md) - [API](API.md) - [ROLES](ROLES.md) - [DATABASE](DATABASE.md) - [SECURITY](SECURITY.md) - [CODE-STYLE](CODE-STYLE.md) - [DEPLOYMENT](DEPLOYMENT.md).
@@ -22,6 +22,7 @@ Main guides: [ARCHITECTURE](ARCHITECTURE.md) - [API](API.md) - [ROLES](ROLES.md)
 - [lib/schemas.ts](files/lib-schemas.md) - Zod contracts + transitions
 - [lib/data.ts](files/lib-data.md) - demo in-memory store
 - [lib/db.ts](files/lib-db.md) - lazy Prisma singleton
+- [lib/appointments.ts](files/lib-appointments.md) - appointment reads/writes (DB or demo)
 - [lib/audit.ts](files/lib-audit.md) - memory audit trail
 - [lib/metrics.ts](files/lib-metrics.md) - request counters
 - [lib/errors.ts](files/lib-errors.md) - structured error reporting
