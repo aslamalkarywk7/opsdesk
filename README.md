@@ -1,5 +1,5 @@
 # OpsDesk - Business Management SaaS
-
+opsdesk123
 [![CI](https://github.com/aslamalkarywk7/opsdesk/actions/workflows/ci.yml/badge.svg)](https://github.com/aslamalkarywk7/opsdesk/actions/workflows/ci.yml)
 
 Vercel-native full-stack: Next.js 14 App Router + TypeScript strict + Tailwind + Auth.js v5 + Prisma + Zod + serverless API routes. Neon Postgres in production, demo memory store locally.
