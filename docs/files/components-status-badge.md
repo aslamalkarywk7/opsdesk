@@ -7,6 +7,10 @@
 - Maps each status to a tone (blue/amber/emerald/slate).
 - Color is decoration; the text label carries meaning (color-blind safe).
 
+## Screenshot
+
+![dashboard](../../public/screenshots/desktop-dashboard.png)
+
 ## Links
 
 - Source: `../../components/StatusBadge.tsx`

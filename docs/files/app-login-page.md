@@ -8,6 +8,10 @@
 - Demo picker fills `staff/manager/admin@opsdesk.demo` (password `opsdesk123`).
 - `?next=` sets the post-login target (default `/dashboard`).
 
+## Screenshot
+
+![login](../../public/screenshots/login.png)
+
 ## Links
 
 - Source: `../../app/login/page.tsx`

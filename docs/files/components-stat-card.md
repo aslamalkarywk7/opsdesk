@@ -7,6 +7,10 @@
 - Renders the 4 dashboard stats (appointments, low stock, orders, revenue).
 - Hidden for STAFF (queue view instead).
 
+## Screenshot
+
+![dashboard](../../public/screenshots/desktop-dashboard.png)
+
 ## Links
 
 - Source: `../../components/StatCard.tsx`

@@ -7,6 +7,10 @@
 - `?domain=` filters the 65 designs; each card links to `/showcase/[id]`.
 - Renders `DesignPreview` miniatures in each design's tokens.
 
+## Screenshot
+
+![showcase](../../public/screenshots/showcase.png)
+
 ## Links
 
 - Source: `../../app/showcase/page.tsx`

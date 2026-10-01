@@ -7,6 +7,10 @@
 - Links: Dashboard, Appointments anchor, Designs gallery, raw JSON probes (`/api/stats`, `/api/health`).
 - Rendered on landing, dashboard, team, showcase.
 
+## Screenshot
+
+![topbar](../../public/screenshots/desktop-home.png)
+
 ## Links
 
 - Source: `../../components/Topbar.tsx`

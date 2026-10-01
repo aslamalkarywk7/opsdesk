@@ -4,23 +4,28 @@ Vercel-native full-stack: Next.js 14 App Router + TypeScript strict + Tailwind +
 
 Live: https://opsdesk-vjez.vercel.app/ — import this repo in Vercel (Root Directory `./` empty, framework Next.js). No database required for demo; production Prisma schema in `prisma/schema.prisma` targets Neon Postgres. Full steps in [docs/DEPLOYMENT.md](docs/DEPLOYMENT.md) + [docs/DEPLOY-CHECKLIST.md](docs/DEPLOY-CHECKLIST.md).
 
-## Quick start
+## Installation
+
+Prerequisites: Node.js >= 18.17 (CI uses 22), npm, Git. Optional: Neon Postgres account (production data), Vercel account (hosting).
 
 ```bash
+git clone https://github.com/aslamalkarywk7/opsdesk.git
+cd opsdesk
 npm install
 cp .env.example .env.local   # then set AUTH_SECRET (openssl rand -base64 32)
 npm run dev     # http://localhost:3000
-npm test        # node --test (7/7 offline domain checks)
-npm run build   # prisma generate && next build (same as Vercel)
 ```
 
-Smoke/E2E need a running server + secrets (see [.github/workflows/ci.yml](.github/workflows/ci.yml)):
+| Command | What it does | Needs |
+|---|---|---|
+| `npm run dev` | local dev server | `.env.local` with `AUTH_SECRET` |
+| `npm test` | offline unit suite (7/7) | nothing |
+| `npm run build` | `prisma generate && next build` (same as Vercel) | nothing (demo works without DB) |
+| `npm run db:push` + `npm run db:seed` | create + seed Neon tables | `DATABASE_URL` in `.env.local` |
+| `npm run smoke` | 25 live-server checks | built + started server, `AUTH_SECRET`, `DEMO_PASSWORD` |
+| `npm run e2e` | 5 Chromium flows | running server + `npx playwright install` |
 
-```bash
-npm run build && npm start &   # wait ~12s
-AUTH_SECRET=... DEMO_PASSWORD=opsdesk123 npm run smoke
-npm run e2e                    # Playwright Chromium (needs npx playwright install)
-```
+Key env vars (`AUTH_SECRET` preferred, `NEXTAUTH_SECRET` also read; demo password default `opsdesk123`): full table in [docs/DEPLOYMENT.md](docs/DEPLOYMENT.md), 15-minute go-live in [docs/DEPLOY-CHECKLIST.md](docs/DEPLOY-CHECKLIST.md).
 
 ## Routes
 
@@ -59,17 +64,49 @@ Auth API (`/api/auth/*`: session, CSRF, sign-out, credentials callback) is docum
 
 ## Screenshots (in `public/screenshots/`)
 
-- `desktop-home.png` - landing
-- `desktop-dashboard.png` - dashboard with stats, table, create form
-- `desktop-search.png` - live search (`?q=mona` -> 1 shown)
-- `login.png` - sign-in with demo accounts per role
-- `dashboard-staff.png` - STAFF check-in queue, Check in only
-- `dashboard-manager.png` - MANAGER stats, approvals, stock alerts
-- `dashboard-admin.png` - ADMIN full control + latest audit
-- `team-admin.png` - ADMIN users, metrics, audit trail
-- `showcase.png` - 65-variant design gallery
-- `showcase-live.png` - live themed workspace (/showcase/d-2)
-- `designs/` - all 65 captured: `all.png` + one page per domain (8 files)
+Landing:
+
+![landing](public/screenshots/desktop-home.png)
+
+Dashboard (role-aware table + actions):
+
+![dashboard](public/screenshots/desktop-dashboard.png)
+
+Live search (`?q=mona` -> 1 shown):
+
+![search](public/screenshots/desktop-search.png)
+
+Sign-in with demo accounts per role:
+
+![login](public/screenshots/login.png)
+
+STAFF check-in queue (Check in only):
+
+![staff](public/screenshots/dashboard-staff.png)
+
+MANAGER stats, approvals, stock alerts:
+
+![manager](public/screenshots/dashboard-manager.png)
+
+ADMIN full control + latest audit:
+
+![admin](public/screenshots/dashboard-admin.png)
+
+ADMIN users, metrics, audit trail:
+
+![team](public/screenshots/team-admin.png)
+
+65-variant design gallery:
+
+![showcase](public/screenshots/showcase.png)
+
+Live themed workspace (/showcase/d-2):
+
+![showcase live](public/screenshots/showcase-live.png)
+
+All 65 variants + one page per domain (8 files) in `designs/`:
+
+![all designs](public/screenshots/designs/all.png)
 
 ## Verified quality gates
 

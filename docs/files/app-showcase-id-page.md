@@ -7,6 +7,10 @@
 - `generateStaticParams()` pre-renders `d-1..d-65`; unknown ids 404.
 - Interactive demo over the demo store: search, status chips, sorting, pagination.
 
+## Screenshot
+
+![showcase live](../../public/screenshots/showcase-live.png)
+
 ## Links
 
 - Source: `../../app/showcase/[id]/page.tsx`

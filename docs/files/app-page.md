@@ -7,6 +7,10 @@
 - Static marketing entry for hiring managers; CTAs to `/showcase` and `/login`.
 - Feature grid mirrors real capabilities (appointments, stock, RBAC, API).
 
+## Screenshot
+
+![landing](../../public/screenshots/desktop-home.png)
+
 ## Links
 
 - Source: `../../app/page.tsx`

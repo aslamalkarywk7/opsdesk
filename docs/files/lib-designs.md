@@ -12,6 +12,10 @@
 - Tokens (palette, nav, chart, density, blurb) drive every preview - theming without markup changes.
 - Unit test asserts the count stays 65.
 
+## Screenshot
+
+![all designs](../../public/screenshots/designs/all.png)
+
 ## Links
 
 - Source: `../../lib/designs.ts`

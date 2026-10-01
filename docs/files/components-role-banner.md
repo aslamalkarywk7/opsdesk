@@ -7,6 +7,10 @@
 - Role colors: violet ADMIN, blue MANAGER, slate STAFF.
 - Scope blurbs mirror `docs/ROLES.md` (full control / operations / check-ins).
 
+## Screenshot
+
+![dashboard](../../public/screenshots/desktop-dashboard.png)
+
 ## Links
 
 - Source: `../../components/RoleBanner.tsx`

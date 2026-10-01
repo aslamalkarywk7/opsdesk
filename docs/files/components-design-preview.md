@@ -7,6 +7,10 @@
 - Renders nav + chart (bars/line/donut) + density swatch in the design's own tokens.
 - Gallery-only component (see `lib/designs.ts`).
 
+## Screenshot
+
+![all designs](../../public/screenshots/designs/all.png)
+
 ## Links
 
 - Source: `../../components/DesignPreview.tsx`

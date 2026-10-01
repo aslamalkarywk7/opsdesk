@@ -13,6 +13,12 @@
 
 - Renders the demo store; DB rows appear only via the API list.
 
+## Screenshot
+
+![dashboard](../../public/screenshots/desktop-dashboard.png)
+
+Role variants: `dashboard-staff.png`, `dashboard-manager.png`, `dashboard-admin.png` in `public/screenshots/`.
+
 ## Links
 
 - Source: `../../app/dashboard/page.tsx`

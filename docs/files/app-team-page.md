@@ -7,6 +7,10 @@
 - Guards: anonymous to `/login?next=/team`, non-ADMIN to `/dashboard` (mirrors middleware).
 - Sections: users and roles table (demo directory), request metrics, audit trail (50).
 
+## Screenshot
+
+![team](../../public/screenshots/team-admin.png)
+
 ## Links
 
 - Source: `../../app/team/page.tsx`
